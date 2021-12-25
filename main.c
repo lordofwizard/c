@@ -1,9 +1,11 @@
 #include <stdio.h>
 int main(){
-	long nc;
-	nc = 0;
-	while (getchar() != EOF){
-		++nc;
+	int c,nl;
+	nl = 0;
+	while((c = getchar()) != EOF){
+		if (c == '\n')
+			   ++nl;
 	}
-	printf("%ld\n",nc);
+	printf("%d\n", nl);
 }
+
