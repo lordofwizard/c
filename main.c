@@ -1,13 +1,22 @@
 #include <stdio.h>
+#define IN 1
+#define OUT 0
 int main(){
-	int c;
-	int blanks = 0,tabs =0, nl = 0;
+	int c, nl, nw, nc ,state;
+	state = OUT;
+	nl = nw = nc = 0;
 	while((c = getchar()) != EOF){
-		if (c == ' ') blanks++;
-		if (c == '\t') tabs++;
-		if (c == '\n') nl++;
+		++nc;
+		if (c == '\n') ++nl;
+		if (c == ' ' || c == '\n' || c == '\t')
+			   state = OUT;
+		else if(state == OUT){
+			state = IN;
+			++nw;
+		}
 	}
-	printf("%d %d %d", blanks , tabs, nl);
+	printf ("Lines = %d, Words = %d, Chars = %d\n",nl, nw , nc);
+
 	return 0;
 }
 
